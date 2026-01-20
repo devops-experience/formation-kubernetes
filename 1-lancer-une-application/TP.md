@@ -37,7 +37,7 @@ kubectl.exe api-resources
 $NS = "$VOS_INITIALES"
 
 # Créer le Namespace
-kubectl.exe create ns $VOS_INITIALES -o=yaml --dry-run=client > tp1.yaml
+kubectl.exe create ns $NS -o=yaml --dry-run=client > tp1.yaml
 echo "---" >> ./tp1.yaml
 kubectl.exe apply -f ./tp1.yaml
 
@@ -45,7 +45,7 @@ kubectl.exe apply -f ./tp1.yaml
 kubectl.exe config set-context --current --namespace $NS
 
 # Vérification
-kubectl.exe config get-contexts 
+kubectl.exe config get-contexts
 ```
 
 #### 4. Mettre en place du monitoring dans un shell séparé
@@ -53,7 +53,7 @@ kubectl.exe config get-contexts
 ```bash
 # Sous Linux
 watch -d "kubectl get po,deployment -o wide"
-# ou 
+# ou
 k9s
 # ou
 lens
@@ -114,4 +114,4 @@ kubectl.exe apply -f ./tp1.yaml
 kubectl.exe delete -f ./tp1.yaml
 
 # Suivre l'état dans le monitoring
-``` 
+```

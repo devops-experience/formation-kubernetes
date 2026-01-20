@@ -61,19 +61,19 @@ curl http://127.0.0.1:8080
 
 ```bash
 
-kubectl create deployment apache --image httpd:2.3 --port 80 --replicas=4 --dry-run=client -o=yaml >> ./jpi.yaml
+kubectl create deployment apache --image httpd:2.4.65 --port 80 --replicas=4 --dry-run=client -o=yaml >> ./jpi.yaml
 echo "---" >> ./jpi.yaml
 kubectl apply -f ./jpi.yaml
 
 # Suivre l'état dans le monitoring
 
-# Modifier l'image en faisant une typo "httppd:2.4
+# Modifier l'image en faisant une typo "httppd:2.4.66
 vim ./jpi.yaml
 kubectl apply -f ./jpi.yaml
 
 # Suivre la rolling upgrade qui reste bloqué
 
-# Corriger la typo et changer l'image en 2.4
+# Corriger la typo et changer l'image en 2.4.66
 vim ./jpi.yaml
 kubectl apply -f ./jpi.yaml
 
@@ -84,9 +84,10 @@ kubectl apply -f ./jpi.yaml
 
 ```bash
 # On regarde le yaml avant de lancer la commande
-kubectl run shell --rm -it --image busybox --command bash -o=yaml --dry-run=client
+kubectl run shell --image busybox --command sh --dry-run=client -o=yaml
+
 # On crée le pod et on lance un shell dedans
-kubectl run shell --rm -it --image busybox --command bash
+kubectl run shell --rm -it --image busybox --  ls -ltr
 # Quitter le shell
 ```
 

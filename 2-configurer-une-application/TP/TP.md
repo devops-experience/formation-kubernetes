@@ -15,7 +15,7 @@ Configurer des conteneurs dans Kubernetes.
 $NS = "$VOS_INITIALES"
 
 # Créer le Namespace
-kubectl.exe create ns $VOS_INITIALES -o=yaml --dry-run=client > tp2.yaml
+kubectl.exe create ns $NS -o=yaml --dry-run=client > tp2.yaml
 echo "---" >> ./tp2.yaml
 kubectl.exe apply -f ./tp2.yaml
 

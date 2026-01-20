@@ -15,7 +15,7 @@ Rendre une application HTTP routable depuis l'extérieur du cluster.
 $NS = "$VOS_INITIALES"
 
 # Créer le Namespace
-kubectl.exe create ns $VOS_INITIALES -o=yaml --dry-run=client > tp3.yaml
+kubectl.exe create ns $NS -o=yaml --dry-run=client > tp3.yaml
 echo "---" >> ./tp3.yaml
 kubectl.exe apply -f ./tp3.yaml
 
