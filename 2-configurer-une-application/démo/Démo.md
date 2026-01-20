@@ -28,7 +28,7 @@ watch -d "kubectl get deployment,po,cm,secrets"
 #### 3. Créer des fichiers de configuration et les utiliser
 ```bash
 # Créer un configmap
-kubectl create configmap app-conf --from-literal=APP_MODE=demo --from-literal=APP_TIMEOUT=30 --from-file=app.conf=./app.conf >> jpi.yaml
+kubectl create configmap app-conf --from-literal=APP_MODE=demo --from-literal=APP_TIMEOUT=30 --from-file=app.conf=./app.conf --dry-run=client -o=yaml >> jpi.yaml
 echo "---" >> ./jpi.yaml
 kubectl apply -f ./jpi.yaml
 
