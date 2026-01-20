@@ -10,42 +10,48 @@ Faire vos premiers pas dans Kubernetes.
 ## Etapes
 
 #### 1. Récupérer le kubeconfig du cluster
-Le lien vous a été envoyé par le formateur.
+- Le lien vous a été envoyé par le formateur sur Teams.
+- Vous devez avoir au moins un client installé sur votre machine
+- Pour "kubectl", la variable KUBECONFIG doit pointer sur le kubeconfig qui vous a été transmis:
+```bash
+$env:KUBECONFIG = "<CHEMIN VERS VOTRE KUBECONFIG>"
+kubectl.exe cluster-info
+```
 
 #### 2. Explorer le cluster
 - Explorer le contenu du cluster
 ```bash
-kubectl get ns
+kubectl.exe get ns
 
-kubectl get po -A
+kubectl.exe get po -A
 
-kubectl get nodes
-kubectl top nodes
+kubectl.exe get nodes
+kubectl.exe top nodes
 
-kubectl api-resources
+kubectl.exe api-resources
 ```
 
 #### 3. Créer son espace dédié
 - Créer un Namespace avec vos initiales
 ```bash
-NS="$VOS_INITIALES"
+$NS = "$VOS_INITIALES"
 
 # Créer le Namespace
-kubectl create ns $VOS_INITIALES -o=yaml --dry-run=client > tp1.yaml
+kubectl.exe create ns $VOS_INITIALES -o=yaml --dry-run=client > tp1.yaml
 echo "---" >> ./tp1.yaml
-kubectl apply -f ./tp1.yaml
+kubectl.exe apply -f ./tp1.yaml
 
 # Passe le contexte par défaut sur votre namespace
-kubectl config set-context --current --namespace $NS
+kubectl.exe config set-context --current --namespace $NS
 
 # Vérification
-kubectl config get-contexts 
+kubectl.exe config get-contexts 
 ```
 
 #### 4. Mettre en place du monitoring dans un shell séparé
 - Mettre en place le monitoring
 ```bash
-# Monitoring
+# Sous Linux
 watch -d "kubectl get po,deployment -o wide"
 # ou 
 k9s
@@ -58,9 +64,9 @@ headlamp
 #### 5. Déployer mon premier conteneur
 - Créer un pod Nginx
 ```bash
-kubectl run nginx --image nginx --port 80 --dry-run=client -o=yaml >> tp1.yaml
+kubectl.exe run nginx --image nginx --port 80 --dry-run=client -o=yaml >> tp1.yaml
 echo "---" >> ./tp1.yaml
-kubectl apply -f ./tp1.yaml
+kubectl.exe apply -f ./tp1.yaml
 ```
 
 - Suivre l'état dans le monitoring
@@ -68,26 +74,26 @@ kubectl apply -f ./tp1.yaml
 - Investiguer le pod crée
 ```bash
 # Etat
-kubectl describe po nginx
+kubectl.exe describe po nginx
 # Logs
-kubectl logs -f nginx
+kubectl.exe logs -f nginx
 # Shell
-kubectl exec -it nginx -- bash
+kubectl.exe exec -it nginx -- bash
 ```
 
 - Tester le Nginx via un port forward
 ```bash
 # Port-forward sur localhost:8080
-kubectl port-forward pod/nginx 8080:80
+kubectl.exe port-forward pod/nginx 8080:80
 curl http://127.0.0.1:8080
 ```
 
 #### 6. Déployer plusieurs réplicas d'un même pod
 - Créer un déploiement appellé "webserver" déployant 3 réplicas de Nginx (image: nginx:latest) exposant le port 80
 ```bash
-kubectl create deployment webserver --image nginx:latest --port 80 --replicas=3 --dry-run=client -o=yaml >> ./tp1.yaml
+kubectl.exe create deployment webserver --image nginx:latest --port 80 --replicas=3 --dry-run=client -o=yaml >> ./tp1.yaml
 echo "---" >> ./tp1.yaml
-kubectl apply -f ./tp1.yaml
+kubectl.exe apply -f ./tp1.yaml
 ```
 
 - Suivre l'état dans le monitoring
@@ -105,7 +111,7 @@ kubectl apply -f ./tp1.yaml
 #### 8. Nettoyage
 - Nettoyer le cluster des objets crées
 ```bash
-kubectl delete -f ./tp1.yaml
+kubectl.exe delete -f ./tp1.yaml
 
 # Suivre l'état dans le monitoring
 ``` 

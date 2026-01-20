@@ -12,24 +12,24 @@ Configurer des conteneurs dans Kubernetes.
 #### 1. Créer son espace dédié
 - Créer un Namespace avec vos initiales
 ```bash
-NS="$VOS_INITIALES"
+$NS = "$VOS_INITIALES"
 
 # Créer le Namespace
-kubectl create ns $VOS_INITIALES -o=yaml --dry-run=client > tp2.yaml
+kubectl.exe create ns $VOS_INITIALES -o=yaml --dry-run=client > tp2.yaml
 echo "---" >> ./tp2.yaml
-kubectl apply -f ./tp2.yaml
+kubectl.exe apply -f ./tp2.yaml
 
 # Passe le contexte par défaut sur votre namespace
-kubectl config set-context --current --namespace $NS
+kubectl.exe config set-context --current --namespace $NS
 
 # Vérification
-kubectl config get-contexts 
+kubectl.exe config get-contexts 
 ```
 
 #### 2. Mettre en place du monitoring dans un shell séparé
 - Mettre en place le monitoring
 ```bash
-# Monitoring
+# Sous Linux
 watch -d "kubectl get po,deployment,cm,secret -o wide"
 # ou 
 k9s
@@ -42,29 +42,29 @@ headlamp
 #### 3. Créer une configuration et utilise la
 - Créer une ConfigMap
 ```bash
-kubectl create configmap app-conf --from-literal=APP_MODE=demo --from-literal=APP_TIMEOUT=30 --from-file=app.conf=./app.conf >> tp2.yaml
+kubectl.exe create configmap app-conf --from-literal=APP_MODE=demo --from-literal=APP_TIMEOUT=30 --from-file=app.conf=./app.conf >> tp2.yaml
 echo "---" >> ./tp2.yaml
-kubectl apply -f ./tp2.yaml
+kubectl.exe apply -f ./tp2.yaml
 ```
 - Utiliser certains champs du configmap dans un pod en envVar et monter le fichier dans un volume du pod
 ```bash
 vim ./pod-cm.yaml
 cat ./pod-cm.yaml >> ./tp2.yaml
 echo "---" >> ./tp2.yaml
-kubectl apply -f ./tp2.yaml
+kubectl.exe apply -f ./tp2.yaml
 ```
 
 - Tester le pod
 ```bash
-kubectl logs demo-cm
+kubectl.exe logs demo-cm
 ```
 
 #### 4. Créer un secret et utilise le
 - Créer un secret 
 ```bash
-kubectl create secret generic postgres --from-file=POSTGRES_PASSWORD=./postgres_password -o=yaml --dry-run=client >> tp2.yaml
+kubectl.exe create secret generic postgres --from-file=POSTGRES_PASSWORD=./postgres_password -o=yaml --dry-run=client >> tp2.yaml
 echo "---" >> ./tp2.yaml
-kubectl apply -f ./tp2.yaml
+kubectl.exe apply -f ./tp2.yaml
 ```
 
 - Utiliser certains champs du secret dans un deploiement en envVar et monter le fichier dans un volume du pod
@@ -72,15 +72,15 @@ kubectl apply -f ./tp2.yaml
 vim ./pod-secret.yaml
 cat ./pod-secret.yaml >> ./tp2.yaml
 echo "---" >> ./tp2.yaml
-kubectl apply -f ./tp2.yaml
+kubectl.exe apply -f ./tp2.yaml
 ```
 
 - Tester le pod
 ```bash
-kubectl logs -f deployment/postgres
+kubectl.exe logs -f deployment/postgres
 
 # Attention, ne se met pas a jour en cas de nouveaux replicas
-kubectl port-forward deployment/postgres 5432
+kubectl.exe port-forward deployment/postgres 5432
 
 # Utiliser le mot de passe du fichier postgres_password
 psql -h 127.0.0.1 -d demo -U demo -W 
@@ -106,7 +106,7 @@ psql -h 127.0.0.1 -d demo -U demo -W
 #### 6. Nettoyage
 
 ```bash
-kubectl delete -f ./tp2.yaml
+kubectl.exe delete -f ./tp2.yaml
 
 # Suivre l'état dans le monitoring
 ``` 
