@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: demo-cm
+spec:
+  containers:
+    - name: demo
+      image: busybox
+      command:
+        - sh
+        - -c
+        - |
+          echo "=== Variables d'environnement ==="
+          echo "APP_MODE=$APP_MODE"
+          echo "APP_TIMEOUT=$APP_TIMEOUT"
+          echo
+          echo "=== Fichier de configuration ==="
+          cat /config/app.conf
+          echo
+          echo "Boucle applicative..."
+          while true; do sleep 60; done
+      env:
+        - name: APP_MODE
+          valueFrom:
+            configMapKeyRef:
+              name: app-conf
+              key: APP_MODE
+        - name: APP_TIMEOUT
+          valueFrom:
+            configMapKeyRef:
+              name: app-conf
+              key: APP_TIMEOUT
+      volumeMounts:
+        - name: conf
+          mountPath: /config
+  volumes:
+  - name: conf
+    configMap:
+      name: app-conf

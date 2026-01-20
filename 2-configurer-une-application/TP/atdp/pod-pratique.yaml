@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pratique
+spec:
+  containers:
+    - name: pratique
+      image: busybox
+      command:
+        - sh
+        - -c
+        - |
+          echo "=== Variables d'environnement ==="
+          echo "APP_ENV=$APP_ENV"
+          echo "APP_LOG_LEVEL=$APP_LOG_LEVEL"
+          echo
+          
+          echo "=== Fichier de configuration ==="
+          cat /config/app.conf
+          echo
+
+          echo "=== SECRET1 ===="
+          cat /run/secret/atdp/*
+          echo
+
+          echo "Boucle applicative..."
+          while true; do sleep 60; done
