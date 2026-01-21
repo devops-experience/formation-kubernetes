@@ -40,6 +40,12 @@ headlamp
 ```
 
 #### 3. Créer une configuration et utilise la
+- Récupérer le dépôt Git
+```bash
+git clone "https://github.com/devops-experience/formation-kubernetes.git"
+cd "2-configurer-une-application/TP"
+```
+
 - Créer une ConfigMap
 ```bash
 kubectl.exe create configmap app-conf --from-literal=APP_MODE=demo --from-literal=APP_TIMEOUT=30 --from-file=app.conf=./app.conf --dry-run -o=yaml >> tp2.yaml
