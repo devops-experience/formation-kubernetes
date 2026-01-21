@@ -54,8 +54,8 @@ kubectl.exe apply -f ./tp2.yaml
 ```
 - Utiliser certains champs du configmap dans un pod en envVar et monter le fichier dans un volume du pod
 ```bash
-vim ./pod-cm.yaml
-cat ./pod-cm.yaml >> ./tp2.yaml
+notepad.exe ./pod-cm.yaml
+gc ./pod-cm.yaml | ac ./tp2.yaml
 echo "---" >> ./tp2.yaml
 kubectl.exe apply -f ./tp2.yaml
 ```
@@ -75,8 +75,8 @@ kubectl.exe apply -f ./tp2.yaml
 
 - Utiliser certains champs du secret dans un deploiement en envVar et monter le fichier dans un volume du pod
 ```bash
-vim ./pod-secret.yaml
-cat ./pod-secret.yaml >> ./tp2.yaml
+notepad.exe ./pod-secret.yaml
+gc ./pod-secret.yaml | ac ./tp2.yaml
 echo "---" >> ./tp2.yaml
 kubectl.exe apply -f ./tp2.yaml
 ```
