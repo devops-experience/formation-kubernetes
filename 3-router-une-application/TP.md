@@ -57,8 +57,11 @@ kubectl.exe apply -f ./tp3.yaml
 - Tester le service
 ```bash
 # Ne pas tester avec port-forward qui n'utilise le service que pour sélectionner un pod
+# Lancer d'abord cette commande
 kubectl.exe run -it --rm checker --image=curlimages/curl:latest --command -- sh 
+# Dans le shell, lancer cette commande 
 while true; do curl --silent http://whoami:8080 | grep "IP: 10";sleep 1;done
+# Puis arrêter le shell
 exit
 ```
 
