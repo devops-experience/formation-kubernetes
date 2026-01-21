@@ -58,7 +58,7 @@ kubectl.exe apply -f ./tp3.yaml
 ```bash
 # Ne pas tester avec port-forward qui n'utilise le service que pour sélectionner un pod
 # Lancer d'abord cette commande
-kubectl.exe run -it --rm checker --image=curlimages/curl:latest --command -- sh 
+kubectl.exe run -it --rm lbcheck --image=curlimages/curl:latest --command -- sh 
 # Dans le shell, lancer cette commande 
 while true; do curl --silent http://whoami:8080 | grep "IP: 10";sleep 1;done
 # Puis arrêter le shell
@@ -70,7 +70,7 @@ exit
 ```bash
 kubectl.exe get po,service -n ingress-nginx -o wide
 # Une entrée A *.onati.devops-experience.com redirige sur le LB du Nginx ingress controleur
-kubectl.exe run -it --rm --image alpine -- sh
+kubectl.exe run -it --rm dnscheck --image alpine -- sh
 apk add bind-tools
 dig test.onati.devops-experience.com
 exit
@@ -78,7 +78,8 @@ exit
 - Exposer l'application via le reverse-proxy du cluster
 !!!!! Utiliser vos initiales pour le nom
 ```bash
-NOM="$VOS_INITIALES"
+$NOM = "$VOS_INITIALES"
+
 kubectl.exe create ingress whoami --class=nginx --rule="$NOM.onati.devops-experience.com/=whoami:8080" --dry-run=client -o=yaml >> ./tp3.yaml
 echo "---" >> ./tp3.yaml
 kubectl.exe apply -f ./tp3.yaml
