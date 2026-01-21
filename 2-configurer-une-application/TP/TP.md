@@ -42,7 +42,7 @@ headlamp
 #### 3. Créer une configuration et utilise la
 - Créer une ConfigMap
 ```bash
-kubectl.exe create configmap app-conf --from-literal=APP_MODE=demo --from-literal=APP_TIMEOUT=30 --from-file=app.conf=./app.conf >> tp2.yaml
+kubectl.exe create configmap app-conf --from-literal=APP_MODE=demo --from-literal=APP_TIMEOUT=30 --from-file=app.conf=./app.conf --dry-run -o=yaml >> tp2.yaml
 echo "---" >> ./tp2.yaml
 kubectl.exe apply -f ./tp2.yaml
 ```
