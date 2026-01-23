@@ -53,6 +53,14 @@ kubectl.exe config get-contexts
 ```bash
 # Sous Linux
 watch -d "kubectl get po,deployment -o wide"
+
+# Dans Powershell
+while ($true) {
+    Clear-Host
+    kubectl get po,deployment -o wide
+    Start-Sleep -Seconds 2
+}
+
 # ou
 k9s
 # ou

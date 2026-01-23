@@ -29,8 +29,16 @@ kubectl.exe config get-contexts
 #### 2. Lancer un monitoring
 - Lancer un monitoring dans un shell dédié ou dans une interface graphique
 ```bash
-# Monitoring
+# Sous Linux
 watch -d "kubectl get deployment,service,ingress -o wide"
+
+# Dans Powershell
+while ($true) {
+    Clear-Host
+    kubectl get po,deployment,service,ingress -o wide
+    Start-Sleep -Seconds 2
+}
+
 # ou 
 k9s
 # ou
