@@ -112,7 +112,7 @@ kubectl.exe apply -f ./tp1.yaml
     - nom du conteneur: echo
     - nom du pod: hashi-echo
     - port exposé: 5678
-- Tester ce que le port 5678 (via shell ou port-forward)
+- Tester ce que le port 5678 renvoie (via shell ou port-forward)
 - Créer un déploiement avec 1 réplica en partant des specifications du Pod que vous venez de créer
 - Modifier le nombre de réplicas à 4
 
