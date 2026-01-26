@@ -50,6 +50,7 @@ headlamp
 #### 3. Créer une configuration et utilise la
 - Récupérer le dépôt Git
 ```bash
+# Ou télécharger directement l'archive depuis github si vous n'avez pas git
 git clone "https://github.com/devops-experience/formation-kubernetes.git"
 cd "2-configurer-une-application/TP"
 ```
@@ -62,9 +63,12 @@ kubectl.exe apply -f ./tp2.yaml
 ```
 - Utiliser certains champs du configmap dans un pod en envVar et monter le fichier dans un volume du pod
 ```bash
+# Editer le fichier pour voir de quoi il s'agit
 notepad.exe ./pod-cm.yaml
+# Ajouter le fichier dans votre yaml à appliquer
 gc ./pod-cm.yaml | ac ./tp2.yaml
 echo "---" >> ./tp2.yaml
+# Appliquer les nouveaux objets
 kubectl.exe apply -f ./tp2.yaml
 ```
 
@@ -83,9 +87,12 @@ kubectl.exe apply -f ./tp2.yaml
 
 - Utiliser certains champs du secret dans un deploiement en envVar et monter le fichier dans un volume du pod
 ```bash
+# Editer le fichier pour voir de quoi il s'agit
 notepad.exe ./pod-secret.yaml
+# Ajouter le fichier dans votre yaml à appliquer
 gc ./pod-secret.yaml | ac ./tp2.yaml
 echo "---" >> ./tp2.yaml
+# Appliquer les nouveaux objets
 kubectl.exe apply -f ./tp2.yaml
 ```
 
