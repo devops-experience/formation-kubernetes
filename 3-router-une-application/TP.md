@@ -5,7 +5,7 @@ Rendre une application HTTP routable depuis l'extérieur du cluster.
 
 ## Documentation (rappel)
 - Référence rapide: https://kubernetes.io/docs/reference/kubectl/quick-reference/#viewing-and-finding-resources
-- Documentation API: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#podspec-v1-core
+- Documentation API: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#podspec-v1-core
 
 ## Etapes
 
