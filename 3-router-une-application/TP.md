@@ -95,7 +95,7 @@ kubectl.exe apply -f ./tp3.yaml
 
 - Tester le service
 ```bash
-kubectl.exe run -it --rm --image=curlimages/curl:latest -- sh
+kubectl.exe run -it --rm --image=curlimages/curl:latest --command -- sh
 curl --silent http://$NOM.onati.devops-experience.com
 
 while true
