@@ -52,7 +52,7 @@ headlamp
 ```bash
 # Ou télécharger directement l'archive depuis github si vous n'avez pas git
 git clone "https://github.com/devops-experience/formation-kubernetes.git"
-cd "2-configurer-une-application/TP"
+cd "formation-kubernetes/2-configurer-une-application/TP"
 ```
 
 - Créer une ConfigMap
