@@ -95,13 +95,13 @@ kubectl.exe apply -f ./tp3.yaml
 
 - Tester le service
 ```bash
-kubectl.exe run -it --rm --image=curlimages/curl:latest --command -- sh
+kubectl.exe run lbcheck -it --rm --image=curlimages/curl:latest --command -- sh
 curl --silent http://$NOM.onati.devops-experience.com
 
 while true
 do
     # On voit bien le load balancing en round robin
-    curl --silent http:/$NOM.onati.devops-experience.com | grep "IP: 10"
+    curl --silent http://$NOM.onati.devops-experience.com | grep "IP: 10"
     sleep 1
 done
 exit
