@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: postgres
+  name: postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+      - image: postgres:16
+        name: postgres
+        env:
+          - name: POSTGRES_PASSWORD
+            value: "superPasswordOnSteroid"
+        resources:
+          requests:
+            memory: 128Mi
+            cpu: 500m
+          limits:
+            memory: 128Mi
+            cpu: 500m
+        ports:
+          - name: postgres
+            containerPort: 5432
+        volumeMounts:
+          - name: db
+            mountPath: /var/lib/postgres/data
+      volumes:
+        - name: db
+          persistentVolumeClaim:
+            claimName: postgres-db
+---
+
