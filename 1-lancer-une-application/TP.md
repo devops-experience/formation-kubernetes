@@ -1,4 +1,4 @@
-# Démonstration
+# Travaux pratiques
 
 ## Objectif
 Faire vos premiers pas dans Kubernetes.

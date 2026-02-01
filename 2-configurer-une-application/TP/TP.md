@@ -1,4 +1,4 @@
-# Démonstration
+# Travaux pratiques
 
 ## Objectif
 Configurer des conteneurs dans Kubernetes.

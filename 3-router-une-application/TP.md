@@ -1,4 +1,4 @@
-# Démonstration
+# Travaux pratiques
 
 ## Objectif
 Rendre une application HTTP routable depuis l'extérieur du cluster.
