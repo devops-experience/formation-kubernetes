@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: readiness
+  name: readiness
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: readiness
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: readiness
+    spec:
+      containers:
+      - image: jpigree/k8s-helloworld:latest
+        name: k8s-helloworld
+        resources:
+          limits:
+            memory: 52Mi
+            # On sous-provisionne volontairement
+            # pour provoquer des latences
+            cpu: 50m
+        ports:
+          - name: http
+            containerPort: 5000
+        # Healthcheck readiness
+        # Vérifie toutes les 5 secondes que le endpoint réponds un HTTP 200
+        # Enlève le pod des adresses routables par des Services quand 
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: http
+          periodSeconds: 5
+          # failureThreshold par défaut = 3
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: readiness
+  name: readiness
+spec:
+  ports:
+  - port: 5000
+    protocol: TCP
+    targetPort: 5000
+  selector:
+    app: readiness
+---

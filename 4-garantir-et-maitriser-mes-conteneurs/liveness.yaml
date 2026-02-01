@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: liveness
+  labels:
+    app: liveness
+spec:
+  # SIGTERM puis SIGKILL le pod au bout de 5 secondes
+  terminationGracePeriodSeconds: 5
+  containers:
+  - name: app
+    image: busybox
+    # Supprime au bout de 30 secondes le fichier "/tmp/healthy"
+    command:
+      - sh
+      - -c
+      - |
+        touch /tmp/healthy
+        sleep 30
+        rm /tmp/healthy
+        sleep 3600
+    # Healthcheck liveness
+    # Vérifie toutes les 5 secondes que le fichier "/tmp/healthy" existe
+    # Redémarre le conteneur 15 secondes après la suppression du fichier.
+    livenessProbe:
+      exec:
+        command:
+        - cat
+        - /tmp/healthy
+      initialDelaySeconds: 5
+      periodSeconds: 5
+      # failureThreshold par défaut = 3
+---
