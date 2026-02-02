@@ -128,7 +128,7 @@ kubectl run --rm netshoot -it --image nicolaka/netshoot -- sh
 while true
 do
   curl http://readiness:5000 &
-  sleep 2;
+  sleep 1;
 done
 ```
 

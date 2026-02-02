@@ -100,7 +100,7 @@ notepad.exe stress.yaml
 ```bash
 # Ajouter le fichier dans votre yaml à appliquer
 gc ./stress.yaml | ac ./tp4.yaml
-echo "---" >> ./tp4.yaml
+
 # Appliquer les nouveaux objets
 kubectl.exe apply -f ./tp4.yaml
 ```
@@ -125,7 +125,7 @@ notepad.exe liveness.yaml
 ```bash
 # Ajouter le fichier dans votre yaml à appliquer
 gc ./liveness.yaml | ac ./tp4.yaml
-echo "---" >> ./tp4.yaml
+
 # Appliquer les nouveaux objets
 kubectl.exe apply -f ./tp4.yaml
 ```
@@ -158,7 +158,7 @@ notepad.exe readiness.yaml
 ```bash
 # Ajouter le fichier dans votre yaml à appliquer
 gc ./readiness.yaml | ac ./tp4.yaml
-echo "---" >> ./tp4.yaml
+
 # Appliquer les nouveaux objets
 kubectl.exe apply -f ./tp4.yaml
 ```
@@ -186,7 +186,7 @@ kubectl.exe run --rm netshoot -it --image nicolaka/netshoot -- sh
 while true
 do
   curl http://readiness:5000 &
-  sleep 2;
+  sleep 1;
 done
 ```
 
