@@ -55,7 +55,7 @@ watch -d "kubectl get po,deployment,service -o wide"
 # Dans Powershell
 while ($true) {
     Clear-Host
-    kubectl get po,deployment,service -o wide
+    kubectl.exe get po,deployment,service -o wide
     Start-Sleep -Seconds 2
 }
 
@@ -174,7 +174,7 @@ watch -d "kubectl get po,endpoints -l app=readiness -o wide"
 # Dans Powershell
 while ($true) {
     Clear-Host
-    kubectl.exe kubectl get po,endpoints -l app=readiness -o wide
+    kubectl.exe get po,endpoints -l app=readiness -o wide
     Start-Sleep -Seconds 1
 }
 ```
