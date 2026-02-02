@@ -84,7 +84,7 @@ kubectl describe pv $PV
 # => https://console.cloud.google.com/compute/disks?project=quantum-theme-484321-i2
 ```
 
-#### 6. Supprimer le PVC
+#### 6. Supprimer le PVC et nettoyer
 
 ```bash
 kubectl delete -f ./jpi.yaml
