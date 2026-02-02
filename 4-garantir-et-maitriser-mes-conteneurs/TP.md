@@ -197,6 +197,22 @@ done
 kubectl events -w
 ```
 
+#### 8. A toi de pratiquer!
+- Examiner les noeuds actuels du cluster
+- Trouver le nombre de CPU allouable (allocatable) maximum pour les noeuds
+- Déployer un pod avec une requests cpu supérieure à la valeur allouable
+- Regarder les détails du Pod
+  - Le Pod arrive t'il a être assigné a un neud?
+  - Les requests influent sur le scheduler et le provisionnement de Nodes
+- Modifier ce pod en:
+  - passant la "requests" cpu à 50m
+  - en définissant une "limits" avec la valeur supérieure à la valeur allouable précédemment utilisée pour les "requests"
+- Le pod se déploie t'il?
+  - Les limits n'influent pas sur le scheduler
+  - Elles restreignent l'accès aux ressources sur les noeuds
+- Regarder les détails du Pod
+- Supprimer le pod
+
 #### 8. Nettoyage
 - Nettoyer le cluster des objets crées
 ```bash
