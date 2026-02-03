@@ -81,7 +81,7 @@ helm.exe upgrade --install --wait backend podinfo/podinfo \
 --set redis.enabled=true
 ```
 
-- Tester l'ui (Cliquer sur le bouton ping, vérifier la version affichée)
+- Tester l'ui (Ouvrir la console debug de votre navigateur, cliquer sur le bouton ping et vérifier les traces dans la console, vérifier la version affichée sur la page Web)
 
 ```bash
 kubectl.exe port-forward deploy/frontend-podinfo 8080:9898
@@ -145,6 +145,7 @@ kubectl.exe port-forward deploy/frontend-podinfo 8080:9898
 - Ouvrir un navigateur a l'url http://127.0.0.1:8080
   - Vérifier la version affichée
   - Vérifier que le bouton ping incrémente bien le compteur
+  - Vérifier les traces dans la console du navigateur web
 
 #### 7. Supprimer l'application déployée avec Helm
 - Supprimer l'application
