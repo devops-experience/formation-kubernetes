@@ -106,13 +106,22 @@ notepad.exe frontend.yaml
 helm.exe search repo podinfo --versions
 ```
 
-- On installe le plugin de diff de Helm qui permet d'afficher un diff entre la version déployée et celle que l'on souhaite appliquer (très pratique et rassurant).
+- [FACULTATIF] On installe le plugin helm-diff, très pratique, qui permet d'afficher un diff entre la version déployée et celle que l'on souhaite appliquer.
 ```bash
+# Sur windows
+# Installer Git
+# Installer PowerShell 7.5.4 (=> https://github.com/PowerShell/PowerShell/releases/download/v7.5.4/PowerShell-7.5.4-win-x86.msi)
+# Relancer Powershell
+# Repositionner la variable kubeconfig dans le nouveau PowerShell
+helm plugin install https://github.com/databus23/helm-diff --verify=false
+
+# sur Linux
 helm.exe plugin install https://github.com/databus23/helm-diff
 ```
 
 - Mettre à jour le frontend et suivre le déploiement sur le monitoring
 ```bash
+# Si vous avez installer le plugin helm-diff
 helm.exe diff upgrade --install frontend podinfo/podinfo \
 --version 6.10.0 \
 --values ./frontend.yaml
@@ -126,6 +135,7 @@ helm.exe upgrade --install --wait frontend podinfo/podinfo \
 
 - Mettre à jour le backend et suivre le déploiement sur le monitoring
 ```bash
+# Si vous avez installer le plugin helm-diff
 helm.exe diff upgrade --install backend podinfo/podinfo \
 --version 6.10.0 \
 --values ./backend.yaml
