@@ -44,6 +44,12 @@ helm list -A
 helm repo add podinfo https://stefanprodan.github.io/podinfo
 helm repo update
 
+# Consulter la liste des charts du repo
+helm search repo podinfo
+
+# Consulter le values du chart
+helm show-values podinfo/podinfo
+
 # Installation du frontend
 helm upgrade --install --wait frontend podinfo/podinfo \
 --namespace jpi \
